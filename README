@@ -1,22 +1,21 @@
-# stonkplot.py - Elegant Stock Visualization Tool
+# DailyStonks_mini.py - Elegant Stock Visualization Demo Tool
 An elegant, lightweight stock plotting utility with AI-powered trend forecasting.
 Perfect for quick market insights with minimal effort.
-Show Image
 
-### Features
+## Features
 - Beautiful Stock Visualizations - Clean, informative charts that highlight key data points
 - AI-Powered Forecasting - Optional trend predictions with confidence intervals
 - Multiple Visual Themes - Choose from light, dark, or cyberpunk aesthetics
 - Data Caching - Smart performance optimizations for faster repeat lookups
 - Simple CLI Interface - Intuitive command-line options for customization
 - Export Capability - Save high-resolution PNG charts for reports and sharing
+- Auto Dependency Management - Smart detection and installation of required packages
 
 ### Installation
 bash
 `# Clone the repository`
 `git clone https://github.com/dailystonks/stonkplot.git`
 `cd stonkplot`
-
 
 ## Install dependencies
 `pip install -r requirements.txt`
@@ -25,15 +24,15 @@ Or just grab the standalone script:
 
 bash
 `# Make sure you have the required packages`
-`pip install matplotlib numpy yfinance scikit-learn`
+`pip install matplotlib numpy yfinance scikit-learn pandas`
+`Dependencies`
 
-
-## Dependencies
 `Python 3.7+`
 `matplotlib`
 `numpy`
 `yfinance`
 `scikit-learn`
+`pandas`
 
 ### Usage
 Basic Usage
@@ -42,20 +41,17 @@ bash
 `# Basic stock chart`
 `python stonkplot.py AAPL`
 
-
 ## Add AI-powered forecast
 `python stonkplot.py TSLA --forecast`
 
-Advanced Options
+### Advanced Options
 
-+bash
+bash
 `# Change time range`
 `python stonkplot.py NVDA --days 90`
 
-
 ## Change theme
 `python stonkplot.py MSFT --theme dark`
-
 
 ## Customize forecast length
 `python stonkplot.py GOOG --forecast --forecast-days 10`
@@ -69,6 +65,7 @@ All Options
                   `ticker`
 
 ### Elegant stock visualization with AI forecasting
+
 positional arguments:
   `ticker                Stock ticker symbol (e.g., AAPL, TSLA)`
 
@@ -77,19 +74,15 @@ options:
   `--forecast, -f        Include AI-based price trend forecast (default: False)`
   `--days, -d DAYS       Number of historical days to display (default: 60)`
   `--forecast-days, -fd FORECAST_DAYS`
-                        Number of days to forecast ahead (default: 5)`
+                        `Number of days to forecast ahead (default: 5)`
   `--theme, -t {light,dark,cyberpunk}`
-                        Visual theme for the chart (default: light)`
+                        `Visual theme for the chart (default: light)`
   `--export, -e          Export chart as PNG image (default: False)`
 
-
 ### Examples
-Light Theme (Default)
-Show Image
-Dark Theme
-Show Image
-Cyberpunk Theme
-Show Image
+- Light Theme (Default)
+- Dark Theme
+- Cyberpunk Them
 
 ### About the AI Forecast
 The forecast uses a Ridge regression model with:
@@ -100,21 +93,18 @@ The forecast uses a Ridge regression model with:
 
 The model works best for short-term trend analysis and should not be used as financial advice.
 
-
-## Contributing
+### Contributing
 Contributions are welcome! Feel free to:
 
 - Report bugs
 - Suggest features
 - Submit pull requests
 
-
 ## License
 MIT License - See LICENSE file for details.
 
-
-## About DailyStonks
+### About DailyStonks
 DailyStonks creates elegant, powerful tools for market analysis and visualization.
 Check out our other projects at github.com/dailystonks.
 
-Created with by DailyStonks
+Created by DailyStonks

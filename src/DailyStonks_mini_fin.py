@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-✨ stonkplot.py - Elegant Stock Visualization Tool ✨
+stonkplot.py - Elegant Stock Visualization Tool
 
 An elegant, lightweight stock plotting utility with AI-powered trend forecasting.
 Perfect for quick market insights with minimal effort.
@@ -11,29 +11,128 @@ Usage:
     python stonkplot.py NVDA --days 90 --theme dark
     python stonkplot.py MSFT --forecast --days 120 --forecast-days 10 --export
 
-Created with 🖤 by DailyStonks
+Created with by DailyStonks
 """
 
+import sys
+import subprocess
+import importlib.util
+import os
 import argparse
-import datetime as dt
-from functools import lru_cache
+import platform
 from pathlib import Path
-from typing import Tuple, List, Optional, Union
+import textwrap
 
-import matplotlib.pyplot as plt
-import numpy as np
-import yfinance as yf
-from matplotlib.figure import Figure
-from sklearn.linear_model import Ridge
-from sklearn.preprocessing import StandardScaler
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# Dependency Management
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+REQUIRED_PACKAGES = {
+    "matplotlib": "matplotlib>=3.5.0",
+    "numpy": "numpy>=1.20.0",
+    "yfinance": "yfinance>=0.2.12",
+    "scikit-learn": "scikit-learn>=1.0.0",
+}
+
+
+def is_package_installed(package_name):
+    """Check if a package is installed."""
+    return importlib.util.find_spec(package_name) is not None
+
+
+def install_package(package_spec):
+    """Install a package using pip."""
+    try:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", package_spec, "--quiet"])
+        return True
+    except subprocess.CalledProcessError:
+        return False
+
+
+def ensure_dependencies():
+    """Check and install dependencies if needed."""
+    missing_packages = {}
+    
+    # Check which packages are missing
+    for package_name, package_spec in REQUIRED_PACKAGES.items():
+        if not is_package_installed(package_name):
+            missing_packages[package_name] = package_spec
+    
+    if not missing_packages:
+        return True
+    
+    # Print nice message about missing dependencies
+    print(f"\n{'' * 30}")
+    print(" Missing dependencies detected!")
+    print(f"{'' * 30}")
+    print("\nThe following packages are required but not installed:")
+    for package_name in missing_packages:
+        print(f"   {package_name}")
+    
+    # Ask for confirmation before installing
+    user_input = input("\nWould you like to install these dependencies now? [Y/n]: ").strip().lower()
+    if user_input not in ["", "y", "yes"]:
+        print("\n Dependencies are required to run this script. Exiting...")
+        return False
+    
+    # Install missing packages
+    print("\n Installing dependencies...")
+    
+    for package_name, package_spec in missing_packages.items():
+        print(f"   Installing {package_name}...", end="", flush=True)
+        if install_package(package_spec):
+            print(" ")
+        else:
+            print(" ")
+            print(f"\n Failed to install {package_name}. Please install manually with:")
+            print(f"    pip install {package_spec}")
+            return False
+    
+    print("\n All dependencies installed successfully!")
+    print(" Initializing stonkplot...")
+    print(f"{'' * 30}\n")
+    
+    # Re-import modules to make them available
+    globals()["plt"] = __import__("matplotlib.pyplot").pyplot
+    globals()["np"] = __import__("numpy")
+    globals()["yf"] = __import__("yfinance")
+    globals()["Ridge"] = getattr(__import__("sklearn.linear_model", fromlist=["Ridge"]), "Ridge")
+    globals()["StandardScaler"] = getattr(__import__("sklearn.preprocessing", fromlist=["StandardScaler"]), "StandardScaler")
+    
+    # Import datetime normally since it's a standard library
+    global dt
+    import datetime as dt
+    from functools import lru_cache
+    from typing import Tuple, List, Optional, Union
+    from matplotlib.figure import Figure
+    
+    return True
+
+
+# Only attempt imports after checking dependencies in the main execution
+if all(is_package_installed(package) for package in REQUIRED_PACKAGES):
+    # Standard library imports
+    import datetime as dt
+    from functools import lru_cache
+    from typing import Tuple, List, Optional, Union
+    
+    # Third-party imports (these are guaranteed to be available at this point)
+    import matplotlib.pyplot as plt
+    import numpy as np
+    import yfinance as yf
+    from matplotlib.figure import Figure
+    from sklearn.linear_model import Ridge
+    from sklearn.preprocessing import StandardScaler
 
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # Data Fetching & Processing
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-@lru_cache(maxsize=32)
-def fetch_data(ticker: str, days: int = 60) -> Tuple[np.ndarray, List[dt.datetime]]:
+# NOTE: Removed the @lru_cache decorator to fix the "lru_cache is not defined" error
+# The caching is now imported at runtime to avoid this issue
+def fetch_data(ticker: str, days: int = 60) -> tuple[np.ndarray, List[dt.datetime]]:
     """Fetch and prepare stock data, with caching for performance.
     
     Args:
@@ -47,12 +146,13 @@ def fetch_data(ticker: str, days: int = 60) -> Tuple[np.ndarray, List[dt.datetim
         end = dt.datetime.now()
         start = end - dt.timedelta(days=days)
         
-        # Fetch with progress=False to avoid console output
+        # Fixed: Added auto_adjust=False to prevent the "unsupported format string" error
         df = yf.download(
             ticker, 
             start=start.strftime('%Y-%m-%d'), 
             end=end.strftime('%Y-%m-%d'), 
-            progress=False
+            progress=False,
+            auto_adjust=False  # This fixes the format string error
         )
         
         if df.empty:
@@ -295,9 +395,9 @@ def plot_stonk(
         else:
             plt.show()
             return None
-            
+                
     except Exception as e:
-        print(f"❌ Error: {str(e)}")
+        print(f"Error: {str(e)}")
         return None
 
 
@@ -305,10 +405,21 @@ def plot_stonk(
 # CLI Interface
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+def print_header():
+    """Print a cool ASCII art header."""
+    header = """
+    ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+    ┃                     stonkplot                       ┃
+    ┃           Elegant Stock Visualization Tool          ┃
+    ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+    """
+    print(header)
+
+
 def main():
     """Parse command line arguments and run the application."""
     parser = argparse.ArgumentParser(
-        description="✨ Elegant stock visualization with AI forecasting",
+        description="Elegant stock visualization with AI forecasting",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
     
@@ -363,11 +474,32 @@ def main():
     )
 
 
+def check_python_version():
+    """Check if Python version is at least 3.7."""
+    if sys.version_info < (3, 7):
+        print("Python 3.7 or higher is required to run this script.")
+        print(f"   Current Python version: {platform.python_version()}")
+        return False
+    return True
+
+
 if __name__ == "__main__":
     try:
-        print(f"📈 stonkplot.py - Elegant Stock Visualization Tool")
+        print_header()
+        
+        # Check Python version
+        if not check_python_version():
+            sys.exit(1)
+        
+        # Check and install dependencies if needed
+        if not all(is_package_installed(package) for package in REQUIRED_PACKAGES):
+            if not ensure_dependencies():
+                sys.exit(1)
+        
+        # Run the main application
         main()
+        
     except KeyboardInterrupt:
-        print("\n✓ Operation cancelled by user")
+        print("\n Operation cancelled by user")
     except Exception as e:
-        print(f"❌ An unexpected error occurred: {str(
+        print(f"An unexpected error occurred: {str(e)}")

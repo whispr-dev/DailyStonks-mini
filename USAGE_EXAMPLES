@@ -1,0 +1,7 @@
+python DailyStonks_mini.py AAPL							[must have tckr: bare min]
+python DailyStonks_mini.py AAPL --export					[default: false, doesn'tdosplay on scrn]
+python DailyStonks_mini.py TSLA --forecast					[default: false]
+python DailyStonks_mini.py NVDA --days 60					[default: 60]
+python DailyStonks_mini.py TSLA --forecast days 10				[default: 5]
+python DailyStonks_mini.py TSLA --theme cyberpunk --forecast			[default: light]
+python DailyStonks_mini.py TSLA --theme cyberpunk --forecast-days 30 --export	[full trimmings: everythoing option]
