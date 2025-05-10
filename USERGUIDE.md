@@ -11,6 +11,7 @@ Perfect for quick market insights with minimal effort.
 - Export Capability - Save high-resolution PNG charts for reports and sharing
 - Auto Dependency Management - Smart detection and installation of required packages
 
+
 ### Installation
 bash
 `# Clone the repository`
@@ -34,6 +35,7 @@ bash
 `scikit-learn`
 `pandas`
 
+
 ### Usage
 Basic Usage
 
@@ -50,6 +52,7 @@ bash
 `# Change time range`
 `python stonkplot.py NVDA --days 90`
 
+
 ## Change theme
 `python stonkplot.py MSFT --theme dark`
 
@@ -63,6 +66,7 @@ All Options
 `usage: stonkplot.py [-h] [--forecast] [--days DAYS] [--forecast-days FORECAST_DAYS]`
                   `[--theme {light,dark,cyberpunk}] [--export]`
                   `ticker`
+
 
 ### Elegant stock visualization with AI forecasting
 
@@ -79,10 +83,12 @@ options:
                         `Visual theme for the chart (default: light)`
   `--export, -e          Export chart as PNG image (default: False)`
 
+
 ### Examples
 - Light Theme (Default)
 - Dark Theme
 - Cyberpunk Them
+
 
 ### About the AI Forecast
 The forecast uses a Ridge regression model with:
@@ -93,6 +99,7 @@ The forecast uses a Ridge regression model with:
 
 The model works best for short-term trend analysis and should not be used as financial advice.
 
+
 ### Contributing
 Contributions are welcome! Feel free to:
 
@@ -101,7 +108,8 @@ Contributions are welcome! Feel free to:
 - Submit pull requests
 
 ## License
-MIT License - See LICENSE file for details.
+CC0 & MIT Hybrid License - See [HYBRID_LICENSE.md] file for details.
+
 
 ### About DailyStonks
 DailyStonks creates elegant, powerful tools for market analysis and visualization.
