@@ -1,8 +1,8 @@
 # uglies
-/temp/
-/src/
-/docs/
-.ico/
+temp/
+src/
+docs/
+.ico
 *.zip
 
 # Byte-compiled / optimized / DLL files
