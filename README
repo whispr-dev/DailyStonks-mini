@@ -1,110 +1,45 @@
-# DailyStonks_mini.py - Elegant Stock Visualization Demo Tool
-An elegant, lightweight stock plotting utility with AI-powered trend forecasting.
-Perfect for quick market insights with minimal effort.
 
-## Features
-- Beautiful Stock Visualizations - Clean, informative charts that highlight key data points
-- AI-Powered Forecasting - Optional trend predictions with confidence intervals
-- Multiple Visual Themes - Choose from light, dark, or cyberpunk aesthetics
-- Data Caching - Smart performance optimizations for faster repeat lookups
-- Simple CLI Interface - Intuitive command-line options for customization
-- Export Capability - Save high-resolution PNG charts for reports and sharing
-- Auto Dependency Management - Smart detection and installation of required packages
+<p align="center">
+  <img src="https://raw.githubusercontent.com/dailystonks@whispr.dev/DailyStonks_mini/main/assets/DailyStonks_preview.png" width="100%" alt="DailyStonks Banner">
+</p>
 
-### Installation
-bash
-`# Clone the repository`
-`git clone https://github.com/dailystonks/stonkplot.git`
-`cd stonkplot`
+---
 
-## Install dependencies
-`pip install -r requirements.txt`
+# DailyStonks
 
-Or just grab the standalone script:
+> _Signal. Not noise._  
+> Precision forecasting. Automated insights. Stonks that whisper before they shout.
 
-bash
-`# Make sure you have the required packages`
-`pip install matplotlib numpy yfinance scikit-learn pandas`
-`Dependencies`
+---
 
-`Python 3.7+`
-`matplotlib`
-`numpy`
-`yfinance`
-`scikit-learn`
-`pandas`
+## What is this?
 
-### Usage
-Basic Usage
+This is the public **tech showcase** for [DailyStonks](https://whispr.dev), a fully automated financial signal and subscriber intelligence system.
 
-bash
-`# Basic stock chart`
-`python stonkplot.py AAPL`
+Inside this repo:
 
-## Add AI-powered forecast
-`python stonkplot.py TSLA --forecast`
+- **Forecast Engines** (AI/ML-driven trend + reversal prediction)
+- **Subscription Automation** (PayPal → welcome emails + tier routing)
+- **Legal & Onboarding Automation**
+- **Live Output Dispatch** from the Whispr Edge™ anomaly tracker
 
-### Advanced Options
+---
 
-bash
-`# Change time range`
-`python stonkplot.py NVDA --days 90`
+## Who is this for?
 
-## Change theme
-`python stonkplot.py MSFT --theme dark`
+If you're interested in:
+- Real-time market forecasting
+- Algorithmic anomaly detection
+- Lightweight SaaS infrastructure
+- Financial alert pipelines
 
-## Customize forecast length
-`python stonkplot.py GOOG --forecast --forecast-days 10`
+…you’re in the right place.
 
-## Export as an image
-`python stonkplot.py AMZN --export`
+---
 
-All Options
-`usage: stonkplot.py [-h] [--forecast] [--days DAYS] [--forecast-days FORECAST_DAYS]`
-                  `[--theme {light,dark,cyberpunk}] [--export]`
-                  `ticker`
+## Want the technical breakdown?
 
-### Elegant stock visualization with AI forecasting
+Head over to the full [GUIDE.md](./GUIDE)  
+It walks through setup, logic, triggers, and integrations.
 
-positional arguments:
-  `ticker                Stock ticker symbol (e.g., AAPL, TSLA)`
-
-options:
-  `-h, --help            show this help message and exit`
-  `--forecast, -f        Include AI-based price trend forecast (default: False)`
-  `--days, -d DAYS       Number of historical days to display (default: 60)`
-  `--forecast-days, -fd FORECAST_DAYS`
-                        `Number of days to forecast ahead (default: 5)`
-  `--theme, -t {light,dark,cyberpunk}`
-                        `Visual theme for the chart (default: light)`
-  `--export, -e          Export chart as PNG image (default: False)`
-
-### Examples
-- Light Theme (Default)
-- Dark Theme
-- Cyberpunk Them
-
-### About the AI Forecast
-The forecast uses a Ridge regression model with:
-
-- Data standardization for better accuracy
-- Confidence intervals showing prediction uncertainty
-- 90% confidence bands by default
-
-The model works best for short-term trend analysis and should not be used as financial advice.
-
-### Contributing
-Contributions are welcome! Feel free to:
-
-- Report bugs
-- Suggest features
-- Submit pull requests
-
-## License
-MIT License - See LICENSE file for details.
-
-### About DailyStonks
-DailyStonks creates elegant, powerful tools for market analysis and visualization.
-Check out our other projects at github.com/dailystonks.
-
-Created by DailyStonks
+---
