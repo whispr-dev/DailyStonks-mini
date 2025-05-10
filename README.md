@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="![DailyStonks Banner](assets/DailyStonks_preview.png)" width="100%" alt="DailyStonks Banner">
+  <img src="![DailyStonks Banner](main/assets/DailyStonks_preview.png)" width="100%" alt="DailyStonks Banner">
 </p>
 
 ---
@@ -14,7 +14,7 @@
 
 ## What is this?
 
-This is the public **tech showcase** for [DailyStonks](https://whispr.dev), a fully automated financial signal and subscriber intelligence system.
+This is the public **tech showcase** for [DailyStonks](https://dailystonks.whispr.dev/signup), a fully automated financial signal and subscriber intelligence system.
 
 Inside this repo:
 
