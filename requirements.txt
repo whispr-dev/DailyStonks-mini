@@ -1,0 +1,7 @@
+#  n.b. if this isn't setup in a env and used or is forgotten or wont work,
+#  the software will automatically detect missing dependencies and ask if
+#  the user wishes to install at time of use?
+
+yfianance
+scikit-learn
+ 

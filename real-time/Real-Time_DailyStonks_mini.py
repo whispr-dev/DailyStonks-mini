@@ -49,7 +49,8 @@ POPULAR_TICKERS = [
 
 REQUIRED_PACKAGES = {
     "matplotlib": "matplotlib>=3.5.0",
-    "numpy": "numpy>=1.20.0",
+    "numpy": "numpy>=1.20.0",  # or optional upgarde to have cude gfx boost on math:
+    "CuPy": "CuPy=12.4",  #  ignore if cuda no go
     "yfinance": "yfinance>=0.2.12",
     "pandas": "pandas>=1.3.0",  # Added pandas as it's needed by yfinance
     "sklearn": "scikit-learn>=1.0.0",  # Fixed: was "sklearn" but should be "scikit-learn"
