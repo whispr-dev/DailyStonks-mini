@@ -232,9 +232,9 @@ def plot_stonk(
         
         # Theme-specific colors
         themes = {
-            'light': {'price': '#1E88E5', 'forecast': '#FF9800', 'fill': 'rgba(255,152,0,0.2)'},
-            'dark': {'price': '#00E5FF', 'forecast': '#FF9100', 'fill': 'rgba(255,145,0,0.25)'},
-            'cyberpunk': {'price': '#00FF9F', 'forecast': '#FF00E4', 'fill': 'rgba(255,0,228,0.2)'}
+            'light': {'price': '#1E88E5', 'forecast': '#FF9800', 'fill': '#111FFF'},
+            'dark': {'price': '#00E5FF', 'forecast': '#FF9100', 'fill': '#000000'},
+            'cyberpunk': {'price': '#00FF9F', 'forecast': '#FF00E4', 'fill': '#000555'}
         }
         
         colors = themes.get(theme, themes['light'])

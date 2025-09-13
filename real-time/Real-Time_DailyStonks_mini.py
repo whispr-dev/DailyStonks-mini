@@ -50,7 +50,7 @@ POPULAR_TICKERS = [
 REQUIRED_PACKAGES = {
     "matplotlib": "matplotlib>=3.5.0",
     "numpy": "numpy>=1.20.0",  # or optional upgarde to have cude gfx boost on math:
-    "CuPy": "CuPy=12.4",  #  ignore if cuda no go
+#   "CuPy": "CuPy=12.4",  #  ignore if cuda no go
     "yfinance": "yfinance>=0.2.12",
     "pandas": "pandas>=1.3.0",  # Added pandas as it's needed by yfinance
     "sklearn": "scikit-learn>=1.0.0",  # Fixed: was "sklearn" but should be "scikit-learn"
@@ -287,7 +287,7 @@ def plot_stonk(
                     transform=ax.transAxes
                 )
                 if fig.canvas.manager is not None:  # Check if canvas is still valid
-                    fig.canvas.draw()
+                    fig.canvas.draw_idle()  # Instead of fig.canvas.draw()
                     fig.canvas.flush_events()  # Process GUI events
                     plt.pause(0.35)
                 else:
