@@ -2,11 +2,11 @@
 #  the software will automatically detect missing dependencies and ask if
 #  the user wishes to install at time of use?
 
-yfinance==0.2.65
-scikit-learn==1.7.2
 matplotlib==3.10.6
-numpy==2.3.3
 pandas==2.3.2
-readchar==4.2.1
 PyQt5==5.15.11
+readchar==4.2.1
+scikit-learn==1.7.2
+yfinance==0.2.65
+numpy==2.3.3
 # CuPy  #  Optional GFX boosted math
